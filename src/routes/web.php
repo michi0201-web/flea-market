@@ -35,6 +35,7 @@ Route::post('/', [ItemController::class, 'index']);
 Fortify::loginView(fn () => view('login'));
 Fortify::registerView(fn () => view('register'));
 Route::get('/', [ItemController::class, 'index'])->name('home');
+Route::get('/item/:item_id', [ItemController::class, 'item']);
 
 
 
