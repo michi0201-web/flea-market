@@ -10,192 +10,170 @@
   <link rel="stylesheet" href="{{ asset('css/index.css') }}" />
   <style>
     body {
-  font-family: "Helvetica Neue", sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #fff;
-}
+      margin: 0;
+      font-family: "Helvetica Neue", sans-serif;
+      background-color: #fff;
+    }
 
-.header {
-  background-color: #000;
-  color: white;
-  padding: 15px 20px;
-}
+    /* ヘッダー */
+    .header {
+      background-color: #000;
+      color: #fff;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-.header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
 
-.logo {
-  font-size: 24px;
-  font-weight: bold;
-}
+    .logo .gt {
+      display: inline-block;
+      width: 28px;
+      height: 24px;
+      background-color: white;
+      margin-right: 5px;
+    }
 
-.logo-gt {
-  background: white;
-  color: black;
-  padding: 2px 6px;
-  border-radius: 4px;
-  margin-right: 5px;
-}
+    .search-box input {
+      padding: 6px;
+      width: 200px;
+      border-radius: 4px;
+      border: none;
+    }
 
-.search-box input {
-  padding: 6px 10px;
-  border-radius: 4px;
-  border: none;
-  width: 220px;
-}
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
 
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
+    .listing-button {
+      padding: 6px 12px;
+      background-color: #fff;
+      color: #000;
+      font-weight: bold;
+      border-radius: 4px;
+      text-decoration: none;
+    }
 
-.link-button {
-  background: none;
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
-}
+    /* タブ */
+    .tabs {
+      display: flex;
+      padding: 12px 20px;
+      border-bottom: 1px solid #ccc;
+      gap: 20px;
+    }
 
-.listing-button {
-  background-color: white;
-  color: black;
-  border-radius: 4px;
-  padding: 6px 10px;
-  font-weight: bold;
-  text-decoration: none;
-}
+    .tab-button {
+      background: none;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      color: #888;
+    }
 
-.tabs {
-  display: flex;
-  gap: 20px;
-  padding: 20px;
-  border-bottom: 1px solid #ccc;
-}
+    .tab-button.active {
+      color: red;
+      font-weight: bold;
+    }
 
-.tab-button {
-  background: none;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  color: black;
-}
+    /* 商品カード */
+    .item-list {
+      display: flex;
+      padding: 20px;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
 
-.tab-button.active {
-  color: red;
-  font-weight: bold;
-}
+    .item-card {
+      width: 150px;
+      text-align: center;
+      text-decoration: none;
+      color: black;
+    }
 
-.item-list {
-  display: flex;
-  padding: 30px;
-  gap: 30px;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-}
+    .item-image {
+      width: 150px;
+      height: 150px;
+      background-color: #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
 
-.item-card {
-  width: 150px;
-  text-align: center;
-  text-decoration: none;
-  color: black;
-  position: relative;
-}
+    .item-name {
+      margin-top: 8px;
+      font-size: 14px;
+    }
 
-.item-image {
-  width: 100%;
-  height: 150px;
-  background-color: #ccc;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-}
-
-.item-name {
-  margin-top: 8px;
-  font-size: 14px;
-}
-
-.sold-label {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: red;
-  color: white;
-  padding: 2px 6px;
-  font-size: 12px;
-  border-radius: 4px;
-}
-
-.hidden {
-  display: none;
-}
-　</style>
+    .hidden {
+      display: none;
+    }
+  </style>
 </head>
 
 <body>
+
+  <!-- ヘッダー -->
   <header class="header">
-    <div class="header-inner">
-      <div class="logo"><span class="logo-gt">GT</span> COACHTECH</div>
-      <form class="search-box">
-        <input type="text" placeholder="なにをお探しですか？">
+    <div class="logo"><span class="gt"></span> COACHTECH</div>
+    <form class="search-box">
+      <input type="text" placeholder="なにをお探しですか？">
+    </form>
+    <nav class="nav-links">
+      <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit" style="background: none; border: none; color: white;">ログアウト</button>
       </form>
-      <nav class="nav-links">
-        <form method="POST" action="{{ route('logout') }}">
-          @csrf
-          <button type="submit" class="link-button">ログアウト</button>
-        </form>
-        <a href="/mypage">マイページ</a>
-        <a href="/listing" class="listing-button">出品</a>
-      </nav>
-    </div>
+      <a href="/mypage">マイページ</a>
+      <a href="/listing" class="listing-button">出品</a>
+    </nav>
   </header>
 
-  <main class="main-content">
-    <div class="tabs">
-      <button class="tab-button active" data-tab="recommend">おすすめ</button>
-      <button class="tab-button" data-tab="mylist">マイリスト</button>
-    </div>
+  <!-- タブ -->
+  <div class="tabs">
+    <button class="tab-button active" data-tab="recommend">おすすめ</button>
+    <button class="tab-button" data-tab="mylist">マイリスト</button>
+  </div>
 
-    <div class="item-list" id="recommend">
-      @foreach ($items as $item)
-        <a href="/items/{{ $item->id }}" class="item-card">
-          <div class="item-image">商品画像</div>
-          <div class="item-name">{{ $item->name }}</div>
-          @if($item->is_sold)
-            <div class="sold-label">SOLD</div>
-          @endif
-        </a>
-      @endforeach
-    </div>
+  <!-- おすすめ商品 -->
+  <div class="item-list" id="recommend">
+    @foreach ($items as $item)
+      <a href="/items/{{ $item->id }}" class="item-card">
+        <div class="item-image">
+          <img src="{{ $item->image_url ?? '/images/sample.png' }}" alt="商品画像" width="150" height="150">
+        </div>
+        <div class="item-name">{{ $item->name }}</div>
+      </a>
+    @endforeach
+  </div>
 
-    <div class="item-list hidden" id="mylist">
-      @foreach ($myItems as $item)
-        <a href="/items/{{ $item->id }}" class="item-card">
-          <div class="item-image">商品画像</div>
-          <div class="item-name">{{ $item->name }}</div>
-          @if($item->is_sold)
-            <div class="sold-label">SOLD</div>
-          @endif
-        </a>
-      @endforeach
-    </div>
-  </main>
+  <!-- マイリスト -->
+  <div class="item-list hidden" id="mylist">
+    @foreach ($myItems as $item)
+      <a href="/items/{{ $item->id }}" class="item-card">
+        <div class="item-image">
+          <img src="{{ $item->image_url ?? '/images/sample.png' }}" alt="商品画像" width="150" height="150">
+        </div>
+        <div class="item-name">{{ $item->name }}</div>
+      </a>
+    @endforeach
+  </div>
 
+  <!-- タブ切替スクリプト -->
   <script>
     const tabs = document.querySelectorAll('.tab-button');
-    const contents = document.querySelectorAll('.item-list');
+    const lists = document.querySelectorAll('.item-list');
 
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
         tabs.forEach(t => t.classList.remove('active'));
-        contents.forEach(c => c.classList.add('hidden'));
+        lists.forEach(l => l.classList.add('hidden'));
 
         tab.classList.add('active');
         document.getElementById(tab.dataset.tab).classList.remove('hidden');

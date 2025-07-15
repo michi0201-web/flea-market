@@ -54,9 +54,9 @@ public function doLogin(LoginRequest $request)
 
 public function index()
 {
-    $items = Item::where('is_recommended', true)->get();
+    $items = Item::all();
 
-    $myItems = Item::where('user_id', Auth::id())->get();
+    $myItems = Item::all();
 
     return view('index', compact('items', 'myItems'));
 }
