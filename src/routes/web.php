@@ -34,7 +34,7 @@ Route::post('/logout', function (Illuminate\Http\Request $request) {
 Route::post('/', [ItemController::class, 'index']);
 Fortify::loginView(fn () => view('login'));
 Fortify::registerView(fn () => view('register'));
-Route::get('/', [ItemController::class, 'index']);
+Route::get('/', [ItemController::class, 'index'])->name('home');
 
 
 

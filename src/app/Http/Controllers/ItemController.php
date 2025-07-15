@@ -52,11 +52,19 @@ public function doLogin(LoginRequest $request)
     }
 }
 
-public function index()
+public function index(Request $request)
 {
-    $items = Item::all();
+    // 商品名で部分一致検索
+    $query = Item::query();
 
-    $myItems = Item::all();
+    if ($request->filled('keyword')) {
+        $query->where('name', 'like', '%' . $request->keyword . '%');
+    }
+
+    $items = $query->get();
+
+    // マイリストが不要ならこの行は削除または空配列に
+    $myItems = [];
 
     return view('index', compact('items', 'myItems'));
 }

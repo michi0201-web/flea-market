@@ -114,6 +114,62 @@
     .hidden {
       display: none;
     }
+
+    @media screen and (min-width: 1400px) and (max-width: 1540px) {
+  .item-list {
+    justify-content: flex-start;
+    gap: 40px;
+    padding: 30px 60px;
+  }
+
+  .item-card {
+    width: 180px;
+  }
+
+  .item-image {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+/* タブレット向けレイアウト（768px〜850px） */
+@media screen and (min-width: 768px) and (max-width: 850px) {
+  .item-list {
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 30px;
+  }
+
+  .item-card {
+    width: 140px;
+  }
+
+  .item-image {
+    width: 140px;
+    height: 140px;
+  }
+
+  .tab-button {
+    font-size: 14px;
+  }
+
+  .search-box input {
+    width: 140px;
+  }
+
+  .logo {
+    font-size: 16px;
+  }
+
+  .listing-button {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+
+  .nav-links {
+    gap: 10px;
+  }
+}
   </style>
 </head>
 
@@ -122,9 +178,10 @@
   <!-- ヘッダー -->
   <header class="header">
     <div class="logo"><span class="gt"></span> COACHTECH</div>
-    <form class="search-box">
-      <input type="text" placeholder="なにをお探しですか？">
-    </form>
+    <form method="GET" action="{{ route('home') }}" class="search-box">
+  <input type="text" name="keyword" placeholder="なにをお探しですか？" value="{{ request('keyword') }}">
+  <button type="submit">検索</button>
+</form>
     <nav class="nav-links">
       <form method="POST" action="{{ route('logout') }}">
         @csrf
