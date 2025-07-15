@@ -69,4 +69,9 @@ public function index(Request $request)
     return view('index', compact('items', 'myItems'));
 }
 
+public function item()
+    {
+        return view('item');
+    }
+
 }
